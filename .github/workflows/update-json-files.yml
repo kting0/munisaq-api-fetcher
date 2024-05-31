@@ -44,6 +44,7 @@ jobs:
           fi
 
       - name: Commit and push changes
+        if: env.changed == 'true'
         run: |
           git commit -m "Update JSON files"
           git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/kting0/munisaq-api-fetcher.git
