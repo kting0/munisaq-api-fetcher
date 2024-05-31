@@ -32,7 +32,10 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          if git diff --exit-code json-files/; then
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add json-files/
+          if git diff --cached --exit-code; then
             echo "No changes detected"
             echo "changed=false" >> $GITHUB_ENV
           else
@@ -42,10 +45,5 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git status
-          git add json-files/
-          git status
           git commit -m "Update JSON files"
-          git push
+          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/kting0/munisaq-api-fetcher.git
