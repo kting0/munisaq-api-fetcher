@@ -57,7 +57,13 @@ async function main() {
       fs.mkdirSync('json-files');
     }
 
-    await Promise.all(urls.map(url => fetchAndSave(url, token)));
+    for (let i = 0; i < urls.length; i++) {
+      await fetchAndSave(urls[i], token);
+      if ((i + 1) % 5 === 0) {
+        console.log('Resting for 1 second...');
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+    }
   } catch (error) {
     console.error('Error in main function:', error.message);
   }
