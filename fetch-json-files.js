@@ -6,6 +6,7 @@ const appId = process.env.TDX_APP_ID;
 const appKey = process.env.TDX_APP_KEY;
 
 async function fetchToken() {
+  console.log('Fetching token...');
   const authUrl = 'https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token';
   const response = await axios.post(authUrl, 
     `grant_type=client_credentials&client_id=${appId}&client_secret=${appKey}`, 
@@ -13,9 +14,11 @@ async function fetchToken() {
   );
 
   if (response.status !== 200) {
+    console.error('Failed to fetch token:', response.status, response.data);
     throw new Error('Failed to fetch token');
   }
 
+  console.log('Token fetched successfully');
   return response.data.access_token;
 }
 
@@ -30,6 +33,7 @@ const urls = [
 
 async function fetchAndSave(url, token) {
   try {
+    console.log(`Fetching data from ${url}...`);
     const response = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${token}`
@@ -48,6 +52,7 @@ async function fetchAndSave(url, token) {
 async function main() {
   try {
     const token = await fetchToken();
+    console.log('Token:', token);
     if (!fs.existsSync('json-files')) {
       fs.mkdirSync('json-files');
     }
