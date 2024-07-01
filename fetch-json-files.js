@@ -23,12 +23,12 @@ async function fetchToken() {
 }
 
 const urls = [
-  'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationTimeTable/TRTC?%24top=99999&%24format=JSON',
+  /*'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationTimeTable/TRTC?%24top=99999&%24format=JSON',
   'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationTimeTable/KLRT?%24top=99999&%24format=JSON',
   'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationTimeTable/KRTC?%24top=99999&%24format=JSON',
   'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationTimeTable/NTALRT?%24top=99999&%24format=JSON',
   'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationTimeTable/NTDLRT?%24top=99999&%24format=JSON',
-  'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationTimeTable/TYMC?%24top=99999&%24format=JSON'
+  'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationTimeTable/TYMC?%24top=99999&%24format=JSON'*/
 ];
 
 async function fetchAndSave(url, token) {
